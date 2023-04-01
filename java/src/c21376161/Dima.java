@@ -12,6 +12,7 @@ public class Dima {
     float rot = 0;
     PShape duck;
     DuckVortex vortex;
+    DuckCircle duckCircle;
 
     public Dima(MyVisual mv){
         this.mv = mv;
@@ -23,14 +24,18 @@ public class Dima {
         boat.Debug = true;
         boat1.Debug = true;
         boat2.Debug = true;
-
+        
         duck = mv.loadShape("duck.obj");
+        duck.setFill(mv.color(40,255,255));
+
         vortex = new DuckVortex(mv, duck);
+        duckCircle = new DuckCircle(mv, duck);
     }
 
     public void Visual(int VisIndex){
         switch(VisIndex){
             case 0:{
+                mv.background(0);
                 mv.stroke(255);
                 w.SetWave();
                 w.RenderWave(-3f);
@@ -44,12 +49,10 @@ public class Dima {
             case 1:{
                 mv.lights();
                 mv.translate(5*mv.width/6,mv.height/2,0);
-                //mv.fill(255,255,255);
-                mv.noFill();
-                mv.stroke(255,0,0);
-                mv.strokeWeight(10);
-                mv.rotateX(PApplet.PI/2.0f);
-                mv.rotateX(-PApplet.PI/6.0f);
+                //mv.rotateX(PApplet.PI/2.0f);
+                //mv.rotateX(-PApplet.PI/6.0f);
+
+                mv.rotateX(2 * PApplet.PI/6.0f);
                 //mv.rotateY(rot);
                 //mv.rotateZ(rot);
                 rot+= 0.01f;
@@ -57,6 +60,25 @@ public class Dima {
 
                 mv.scale(60);
                 vortex.Render();
+            }
+            break;
+
+            case 2:{
+                mv.background(0);
+                mv.lights();
+                mv.translate(mv.width/2,mv.height/2,0);
+                //mv.fill(255,255,255);
+                mv.noFill();
+                mv.stroke(255,0,0);
+                mv.strokeWeight(10);
+                mv.rotateX(2 * PApplet.PI/6.0f);
+                //mv.rotateY(rot);
+                //mv.rotateZ(rot);
+                rot+= 0.01f;
+                mv.translate(0,0,-50);
+
+                mv.scale(60);
+                duckCircle.Render();
             }
             break;
 

@@ -9,6 +9,7 @@ public class MyVisual extends Visual
     WaveForm wf;
     AudioBandsVisual abv;
 
+    float position;
     Dima dima;
     int i = 0;
 
@@ -26,6 +27,8 @@ public class MyVisual extends Visual
 
     public void setup()
     {
+        
+        colorMode(HSB);
         startMinim();
                 
         // Call loadAudio to load an audio file to process 
@@ -52,11 +55,7 @@ public class MyVisual extends Visual
 
     public void draw()
     {
-        //background(0, 30);
-        fill(0,0,0,map(mouseX,0,width,0,256));
-        translate(0,0,-1000);
-        rect(-width,-height,4f*width,4f*height);
-        translate(0,0,1000);
+        background(0, 30);
         try
         {
             // Call this if you want to use FFT data
@@ -75,10 +74,17 @@ public class MyVisual extends Visual
         //abv.render();
         fill(0,255,255,255);
         rect(i + 10,10,10,10);
+        position = map(getAudioPlayer().position(), 0, getAudioPlayer().length(), 0, 100);
+        if(position < 10){
+            dima.Visual(0);
+        }
+        else if(position < 20){
+            dima.Visual(1);
+        }
+        else{
+            dima.Visual(2);
+        }
 
-        dima.Visual(1);
-
-        
         i+= 20;
         i%=width;
     }

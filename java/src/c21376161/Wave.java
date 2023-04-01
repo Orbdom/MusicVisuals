@@ -24,7 +24,7 @@ public class Wave{
         points[0] = 0;
         for(int i = 1; i < AmtPoints-1; i++){
             //points[i] = points[i-1] + mv.random(-DIST,DIST);
-            points[i] = (float)PApplet.lerp(points[i-1], mv.random(-DIST,DIST), 0.1f);
+            points[i] = BufferAvg();//(float)PApplet.lerp(points[i-1], mv.random(-DIST,DIST), 0.1f);
         }
     }
 

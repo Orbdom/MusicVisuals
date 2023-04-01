@@ -49,7 +49,7 @@ public class Bobber {
         int preCol = p.g.strokeColor;
         float preWeight = p.g.strokeWeight;
 
-        p.stroke(255,255,255);
+        p.stroke(0,0,255);
         p.strokeWeight(1);
         p.translate(pos + length/2, wave.WaveHeight + 100);
 
@@ -60,7 +60,7 @@ public class Bobber {
         p.line(length/2, -20, length/2, 20);
 
         p.rotate(LerpedAngle);
-        p.stroke(255,0,0);
+        p.stroke(255,255,255);
         p.strokeWeight(3);
         p.line(0.9f*(-length/2), -0, 0.9f*(length/2), 0);
         p.rotate(-LerpedAngle);

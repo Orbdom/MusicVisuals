@@ -14,7 +14,7 @@ public class Boat extends Bobber {
         Hull = p.createShape(PShape.GEOMETRY);
         Hull.beginShape();
         Hull.noFill();
-        Hull.stroke(255,255,255);
+        Hull.stroke(0,0,255);
         Hull.vertex(-50,-10);
         Hull.vertex(-48,-20);
         Hull.vertex(-20, -20);
@@ -49,7 +49,8 @@ public class Boat extends Bobber {
         p.scale(scale);
 
         //drawing
-        p.stroke(255,255,255);
+        p.stroke(0,0,255);
+        p.strokeWeight(1);
         p.noFill();
 
         //sail and mast
