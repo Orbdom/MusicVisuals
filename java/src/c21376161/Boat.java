@@ -4,7 +4,7 @@ import processing.core.PApplet;
 import processing.core.PShape;
 
 public class Boat extends Bobber {
-    public PShape Hull;
+    public PShape Hull, Mast;
     float drop = 0;
 
     public Boat(Wave wave, float pos, float length, float drop){
@@ -13,7 +13,6 @@ public class Boat extends Bobber {
 
         Hull = p.createShape(PShape.GEOMETRY);
         Hull.beginShape();
-        Hull.noFill();
         Hull.stroke(0,0,255);
         Hull.vertex(-50,-10);
         Hull.vertex(-48,-20);
@@ -33,7 +32,10 @@ public class Boat extends Bobber {
         //p.line(-50, -10, -45,7);
         //p.bezier(-45, 7, -20,10, 50,20, 50,-10);
         Hull.endShape(PApplet.CLOSE);
+        Hull.setFill(true);
+        Hull.setFill(wave.mv.color(0,0,0));
 
+        
     }
 
     public Boat(Wave wave, float pos, float length, float drop, PShape Hull){
@@ -56,7 +58,6 @@ public class Boat extends Bobber {
         //sail and mast
         p.rect(-1.5f,-10,3,-70);
         p.bezier(-10,-80,20,-70, 20,-25,-10,-15);
-
         //hull
         p.shape(Hull);
 

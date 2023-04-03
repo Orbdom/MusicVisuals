@@ -4,27 +4,28 @@ import example.MyVisual;
 import processing.core.PApplet;
 
 public class Wave{
-    MyVisual mv;
+    protected MyVisual mv;
 
-    float points[];
-    float WaveOffset = 0;
-    int WaveDelay = 0;
-    int AmtPoints;
-    int WaveWidth, WaveHeight;
-    float ToLerp;
-    float DIST = 30;
+    protected float points[];
+    protected float WaveOffset = 0;
+    protected int WaveDelay = 0;
+    protected int AmtPoints;
+    protected float WaveWidth, WaveHeight;
+    protected float ToLerp;
+    protected float DIST = 30;
 
-    public Wave(MyVisual mv, int AmtPoints){
+    public Wave(MyVisual mv, float WaveX, float WaveY, int AmtPoints){
         this.mv = mv;
-        this.WaveWidth = mv.width+20;
-        this.WaveHeight = mv.height/2;
+        this.WaveWidth = WaveX + 20;
+        this.WaveHeight = WaveY;
 
         this.points = new float[AmtPoints];
         this.AmtPoints = AmtPoints;
         points[0] = 0;
         for(int i = 1; i < AmtPoints-1; i++){
             //points[i] = points[i-1] + mv.random(-DIST,DIST);
-            points[i] = BufferAvg();//(float)PApplet.lerp(points[i-1], mv.random(-DIST,DIST), 0.1f);
+            points[i] = (float)PApplet.lerp(points[i-1], 10*PApplet.sin(20*i/AmtPoints),0.5f);
+            //points[i] =  (float)PApplet.lerp(points[i-1], mv.random(-DIST,DIST), 0.1f);
         }
     }
 
@@ -57,6 +58,12 @@ public class Wave{
         WaveOffset += offset;
         WaveOffset += WaveWidth;
         WaveOffset %= WaveWidth;
+    }
+
+    void JoinWaveVerts(Wave w1, Wave w2){
+        for(int i =0; i < w1.AmtPoints; i++){
+            mv.line(i,w1.GrabWavePoint(i) * WaveWidth/AmtPoints, i, w1.GrabWavePoint(i) + 10);
+        }
     }
 
     public float GrabWavePoint(float pos){
