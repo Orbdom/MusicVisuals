@@ -1,5 +1,7 @@
 package c21344786;
 
-public class Radar
+import processing.core.PApplet;
+
+public class Radar extends PApplet
 {    
 }
