@@ -4,48 +4,80 @@ import processing.core.PApplet;
 import processing.core.PShape;
 
 public class Boat extends Bobber {
-    public PShape Hull, Mast;
+    public PShape Parent, BoatShape, Sail, Mast;
     float drop = 0;
 
     public Boat(Wave wave, float pos, float length, float drop){
         super(wave, pos, length);
         this.drop = drop;
 
-        Hull = p.createShape(PShape.GEOMETRY);
-        Hull.beginShape();
-        Hull.stroke(0,0,255);
-        Hull.vertex(-50,-10);
-        Hull.vertex(-48,-20);
-        Hull.vertex(-20, -20);
-        Hull.vertex(-20, -10);
-        Hull.vertex(15, -10);
-        Hull.vertex(30, -20);
-        Hull.vertex(55, -20);
+        Parent = p.createShape(PShape.GROUP);
+        //Parent.beginShape();
+        //Parent.endShape();
 
-        Hull.vertex(69, -23);
-        Hull.vertex(70, -22);
+        BoatShape = p.createShape(PShape.GEOMETRY);
+        BoatShape.beginShape();
+        BoatShape.stroke(0,0,255);
+        BoatShape.vertex(-50,-10);
+        BoatShape.vertex(-48,-20);
+        BoatShape.vertex(-20, -20);
+        BoatShape.vertex(-20, -10);
+        BoatShape.vertex(15, -10);
+        BoatShape.vertex(30, -20);
+        BoatShape.vertex(55, -20);
 
-        Hull.vertex(55, -15);
-        Hull.bezierVertex( 40,20, -20,10, -45, 7);
+        BoatShape.vertex(69, -23);
+        BoatShape.vertex(70, -22);
 
-        //p.line(-50, -10, 50,-10);
-        //p.line(-50, -10, -45,7);
-        //p.bezier(-45, 7, -20,10, 50,20, 50,-10);
-        Hull.endShape(PApplet.CLOSE);
-        Hull.setFill(true);
-        Hull.setFill(wave.mv.color(0,0,0));
+        BoatShape.vertex(55, -15);
+        BoatShape.bezierVertex( 40,20, -20,10, -45, 7);
 
+        BoatShape.endShape(PApplet.CLOSE);
+        BoatShape.setFill(true);
+        BoatShape.setFill(wave.mv.color(0,0,0));
+
+        //Sail
+        Sail = p.createShape(PShape.GEOMETRY);
+        Sail.beginShape();
+        Sail.stroke(0,0,255);
+
+        Sail.vertex(-10,-80);
+        Sail.bezierVertex(20,-70, 20,-25,-10,-15);
+
+        Sail.endShape();
+        Sail.setFill(true);
+        Sail.setFill(wave.mv.color(0,0,0));
+
+        //Mast rect(-1.5f,-10,3,-70);
+
+        Mast = p.createShape(PShape.GEOMETRY);
+        Mast.beginShape();
+        Mast.stroke(0,0,255);
+
+        Mast.vertex(-5f,-10);
+        Mast.vertex(-1.5f,-10);
+        Mast.vertex(-1.5f,-80);
+        Mast.vertex(-5f,-80);
         
+        Mast.endShape(PShape.CLOSE);
+        Mast.setFill(true);
+        Mast.setFill(wave.mv.color(0,0,0));
+
+        Parent.addChild(BoatShape);
+        Parent.addChild(Sail);
+        Parent.addChild(Mast);
+
     }
 
-    public Boat(Wave wave, float pos, float length, float drop, PShape Hull){
+    public Boat(Wave wave, float pos, float length, float drop, PShape Parent){
         super(wave, pos, length);
         this.drop = drop;
-        this.Hull = Hull;
+        this.Parent = Parent;
     }
 
     public void Render(float AngleRate, float HeightRate,float scale){
         GetAngle(AngleRate, HeightRate);
+        p.pushMatrix();
         p.translate(pos + length/2, LerpedMidHeight + drop);
         p.rotate(LerpedAngle);
         p.scale(scale);
@@ -55,15 +87,7 @@ public class Boat extends Bobber {
         p.strokeWeight(1);
         p.noFill();
 
-        //sail and mast
-        p.rect(-1.5f,-10,3,-70);
-        p.bezier(-10,-80,20,-70, 20,-25,-10,-15);
-        //hull
-        p.shape(Hull);
-
-        p.scale(1/scale);
-        //drawing
-        p.rotate(-LerpedAngle);
-        p.translate(-(pos + length/2), -LerpedMidHeight - drop);
+        p.shape(Parent);
+        p.popMatrix();
     }
 }

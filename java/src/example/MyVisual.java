@@ -2,7 +2,6 @@ package example;
 
 import ie.tudublin.*;
 import c21376161.*;
-import c21344786.*;
 
 public class MyVisual extends Visual
 {    
@@ -37,9 +36,6 @@ public class MyVisual extends Visual
         
         // Call this instead to read audio from the microphone
         //startListening(); 
-        
-        wf = new WaveForm(this);
-        abv = new AudioBandsVisual(this);
 
         dima = new Dima(this);
     }
@@ -70,8 +66,7 @@ public class MyVisual extends Visual
         //
         //// Call this is you want to get the average amplitude
         calculateAverageAmplitude();        
-        //wf.render();
-        //abv.render();
+
         fill(0,255,255,255);
         rect(i + 10,10,10,10);
         position = map(getAudioPlayer().position(), 0, getAudioPlayer().length(), 0, 100);

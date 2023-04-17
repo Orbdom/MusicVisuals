@@ -5,80 +5,91 @@ import processing.core.PApplet;
 import processing.core.PShape;
 
 public class Dima {
-    Wave MainWave, Wave2, Wave3;
-    Boat boat, boat1, boat2, duckBoat;
+    Wave WaveArray[];
+    int WaveAmount = 3;
+
+    Boat boats[], duckBoat;
     MyVisual mv;
 
-    float rot = 0;
-    PShape duck;
+    PShape duck, duck2;
     DuckVortex vortex;
     DuckCircle duckCircle;
 
     public Dima(MyVisual mv){
         this.mv = mv;
-        MainWave =  new Wave(this.mv, mv.width, mv.height/2, 200);
-        Wave2 =     new Wave(this.mv, mv.width, mv.height/2 - 10, 200);
-        Wave3 =     new Wave(this.mv, mv.width, mv.height/2 + 10, 200);
+        
+        //MainWave =  new Wave(this.mv, mv.width, mv.height/2, 200);
+        //Wave2 =     new Wave(this.mv, mv.width, mv.height/2 - 10, 200);
+        //Wave3 =     new Wave(this.mv, mv.width, mv.height/2 + 10, 200);
 
+        WaveArray = new Wave[WaveAmount];
+        for(int i = 0; i < WaveAmount; i++){
+            WaveArray[i] = new Wave(mv, mv.width, mv.height/2 - (20 * (-1 + i)), 200);
+        }
 
-        boat = new Boat(MainWave, 125, 50, 0);
-        boat1 = new Boat(MainWave, 300, 100, 0,boat.Hull);
-        boat2 = new Boat(MainWave, 500, 100, 0,boat.Hull);
-        boat.Debug = true;
-        boat1.Debug = true;
-        boat2.Debug = true;
+        //ship = mv.loadShape("Ship.obj");
+        boats = new Boat[3];
+        boats[0] = new Boat(WaveArray[1], 200, 50, 0);
+
+        //boats[0].Debug  = true;
+
+        for(int i = 1; i < boats.length; i++){
+            boats[i] = new Boat(WaveArray[1], 200 * (i + 1), 100, 0, boats[0].Parent);
+        }
         
         duck = mv.loadShape("duck.obj");
         duck.setFill(mv.color(40,255,255));
+        duck2 = mv.loadShape("duck.obj");
+        duck2.setFill(mv.color(40,255,255));
 
-        duckBoat = new Boat(MainWave, mv.width*0.9f, 100, 0, duck);
+        duckBoat = new Boat(WaveArray[1], mv.width*0.9f, 100, 50, duck);
+        duckBoat.Parent.scale(30);
+        duckBoat.Parent.rotateX(PApplet.PI/2f);
+        duckBoat.Parent.rotateY(-0.5f);
+        duckBoat.Parent.scale(1,1,0.09f);
 
-        vortex = new DuckVortex(mv, duck);
-        duckCircle = new DuckCircle(mv, duck);
+        vortex = new DuckVortex(mv, duck2);
+        duckCircle = new DuckCircle(mv, duck2);
     }
 
     public void Visual(int VisIndex){
+
+        mv.lights();
+        mv.background(0);
+
         switch(VisIndex){
             case 0:{
-                mv.lights();
-                mv.background(0);
-                mv.stroke(255);
-                MainWave.SetWave();
                 
+                mv.stroke(255);
 
-                Wave2.SetWave();
-                Wave2.RenderWave(-2f);
+                mv.pushMatrix();
+                mv.pushMatrix();
+                for(int i = 0; i < WaveAmount; i++){
+                    
+                    mv.translate(0, 0, -10);
 
-                Wave3.SetWave();
+                    WaveArray[i].SetWave();
+                    WaveArray[i].RenderWave(-i - 1);
 
-                mv.translate(0,0,1);    //makes Pshape render infront of wave
-                boat.Render(0.05f,0.4f,1.5f);
-                boat1.Render(0.05f,0.7f,1.5f);
-                boat2.Render(0.05f,0.1f,1.5f);
+                }
+                mv.popMatrix();
+
+                mv.translate(0,0,-20);    //makes Pshape render infront of wave
+
+                for(Boat b: boats){
+                    b.Render(0.05f,0.1f,1.5f);
+                }
                 duckBoat.Render(0.05f,0.1f,1.5f);
 
-                mv.push();
-                mv.scale(50);
-                mv.shape(duck);
-
-                mv.pop();
-                MainWave.RenderWave(-3f);
-                Wave3.RenderWave(-4f);
-                mv.translate(0,0,-1);
-                MainWave.JoinWaveVerts(MainWave,Wave2);
+                mv.popMatrix();
             }
             break;
 
             case 1:{
-                mv.lights();
                 mv.translate(5*mv.width/6,mv.height/2,0);
-                //mv.rotateX(PApplet.PI/2.0f);
-                //mv.rotateX(-PApplet.PI/6.0f);
 
                 mv.rotateX(2 * PApplet.PI/6.0f);
-                //mv.rotateY(rot);
-                //mv.rotateZ(rot);
-                rot+= 0.01f;
+                
                 mv.translate(0,0,-50);
 
                 mv.scale(60);
@@ -87,17 +98,14 @@ public class Dima {
             break;
 
             case 2:{
-                mv.background(0);
-                mv.lights();
-                mv.translate(mv.width/2,mv.height/2,0);
-                //mv.fill(255,255,255);
+
                 mv.noFill();
                 mv.stroke(255,0,0);
                 mv.strokeWeight(10);
+
+                mv.translate(mv.width/2,mv.height/2,0);
                 mv.rotateX(2 * PApplet.PI/6.0f);
-                //mv.rotateY(rot);
-                //mv.rotateZ(rot);
-                rot+= 0.01f;
+                
                 mv.translate(0,0,-50);
 
                 mv.scale(60);
