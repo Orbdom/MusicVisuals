@@ -39,7 +39,7 @@ public class Shawn
                 shapeW = board1.getWidth();
                 shapeH = board1.getHeight();
 
-                board1.screen(30, 10, "Info on the duck?");
+                board1.screen(30, 10, "Info On The Duck?");
             }
             break;
         }
