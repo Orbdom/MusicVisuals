@@ -37,7 +37,9 @@ public class Shawn
                 shapeW = board1.getWidth();
                 shapeH = board1.getHeight();
 
-                board1.screen(30, 30, "Info On The Duck?", 180);
+                board1.screen(30, 20, "Info On The Duck?", 180);
+                sonar1.screen(shapeW, 300, 1000, 300, 15, "Broadband Sonar", 0);
+                sonar2.screen(shapeW, 750, 1000, 300, 30, "Narrowband Sonar", 0);
             }
             break;
 
