@@ -29,6 +29,16 @@ public class Board
         shapeW = screenW-(gap*2);
         shapeH = screenH-(gap*2);
         lineH = shapeH/row;
+
+        mv.background(209, 175, 132); // Board border colour
+
+        mv.pushStyle();
+
+        mv.noStroke();
+        mv.fill(39, 76, 67);
+        mv.rect(gap, gap, shapeW, shapeH);
+
+        mv.popStyle();
     }
 
     // Get method for setting object max width
