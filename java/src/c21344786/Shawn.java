@@ -42,7 +42,12 @@ public class Shawn
             break;
 
             case 1:
-            {}
+            {
+                shapeW = board2.getWidth();
+                shapeH = board2.getHeight();
+
+                board2.screen(30, 30, "Personnel Files", 180);
+            }
             break;
         }
     }
