@@ -34,9 +34,20 @@ public class Board
 
         mv.pushStyle();
 
+        // Board surface
         mv.noStroke();
         mv.fill(39, 76, 67);
         mv.rect(gap, gap, shapeW, shapeH);
+
+        // Board chalk lines
+        for(int i = 1; i < row; i++)
+        {
+            lineX = gap+(i*lineH);
+
+            mv.stroke(100);
+            mv.strokeWeight(1);
+            mv.line(gap, lineX, shapeW+gap, lineX);
+        }
 
         mv.popStyle();
     }

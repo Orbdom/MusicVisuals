@@ -14,6 +14,9 @@ public class Shawn
 
     Radar radar1;
 
+    float shapeW;
+    float shapeH;
+
     public Shawn(MyVisual mv)
     {
         this.mv = mv;
@@ -32,7 +35,12 @@ public class Shawn
         switch(index)
         {
             case 0:
-            {}
+            {
+                shapeW = board1.getWidth();
+                shapeH = board1.getHeight();
+
+                board1.screen(30, 10, "Info on the duck?");
+            }
             break;
         }
     }
