@@ -8,10 +8,8 @@ public class Shawn
 
     Board board1;
     Board board2;
-
     Sonar sonar1;
     Sonar sonar2;
-
     Radar radar1;
 
     float shapeW;
@@ -39,8 +37,12 @@ public class Shawn
                 shapeW = board1.getWidth();
                 shapeH = board1.getHeight();
 
-                board1.screen(30, 10, "Info On The Duck?");
+                board1.screen(30, 30, "Info On The Duck?", 180);
             }
+            break;
+
+            case 1:
+            {}
             break;
         }
     }

@@ -1,6 +1,7 @@
 package c21344786;
 
 import example.MyVisual;
+import processing.core.PConstants;
 
 public class Board
 {
@@ -23,14 +24,15 @@ public class Board
     }
     
     // Background creation method
-    public void screen(float gap, float row, String title)
+    public void screen(float gap, float row, String title, float titleY)
     {
         // Calculations to determine max screen
         shapeW = screenW-(gap*2);
         shapeH = screenH-(gap*2);
         lineH = shapeH/row;
 
-        mv.background(209, 175, 132); // Board border colour
+        // Board border colour
+        mv.background(209, 175, 132);
 
         mv.pushStyle();
 
@@ -50,6 +52,11 @@ public class Board
         }
 
         mv.popStyle();
+
+        // Board title
+        mv.textSize(128);
+        mv.textAlign(PConstants.CENTER);
+        mv.text(title, shapeW/2+gap, titleY);
     }
 
     // Get method for setting object max width
