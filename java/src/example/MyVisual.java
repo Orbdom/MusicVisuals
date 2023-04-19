@@ -77,8 +77,15 @@ public class MyVisual extends Visual
         fill(0,255,255,255);
         rect(i + 10,10,10,10);
         position = map(getAudioPlayer().position(), 0, getAudioPlayer().length(), 0, 100);
-        
-        shawn.visual(0);
+        if(position < 10){
+            dima.Visual(0);
+        }
+        else if(position < 20){
+            dima.Visual(1);
+        }
+        else{
+            dima.Visual(2);
+        }
 
         i+= 20;
         i%=width;
