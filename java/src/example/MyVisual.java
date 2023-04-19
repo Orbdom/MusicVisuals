@@ -11,6 +11,7 @@ public class MyVisual extends Visual
 
     float position;
     Dima dima;
+    Shawn shawn;
     int i = 0;
 
     public void settings()
@@ -42,6 +43,7 @@ public class MyVisual extends Visual
         abv = new AudioBandsVisual(this);
 
         dima = new Dima(this);
+        shawn = new Shawn(this);
     }
 
     public void keyPressed()
