@@ -72,8 +72,46 @@ public class Sonar
     }
 
     public void rawWave()
-    {}
+    {
+        mv.pushStyle();
+        mv.beginShape();
 
-    public void modWave()
-    {}
+        for(int i = 0; i < mv.getAudioBuffer().size(); i++)
+        {
+            waveX = MyVisual.map(i, 0, mv.getAudioBuffer().size(), topX, topX+shapeW);
+            waveY = MyVisual.map(mv.getAudioBuffer().get(i), -1, 1, topY, topY+shapeH);
+            waveY = MyVisual.constrain(waveY, topY, topY+shapeH);
+
+            mv.noFill();
+            mv.stroke(0, 255, 0);
+            mv.strokeWeight(2);
+            mv.vertex(waveX, waveY);
+        }
+
+        mv.endShape();
+        mv.popStyle();
+    }
+
+    public void modWave(float scale)
+    {
+        mv.pushStyle();
+        mv.beginShape();
+
+        for(int i = 0; i < mv.getAudioBuffer().size(); i++)
+        {
+            waveX = MyVisual.map(i, 0, mv.getAudioBuffer().size(), topX, topX+shapeW);
+            waveY = MyVisual.map(mv.getAudioBuffer().get(i), -1, 1, -scale*shapeH, scale*shapeH);
+            waveY = MyVisual.lerp(topY+shapeH/2, topY+shapeH/2+waveY, scale);
+            waveY = MyVisual.constrain(waveY, topY, topY+shapeH);
+
+            mv.smooth();
+            mv.noFill();
+            mv.stroke(255, 255, 0);
+            mv.strokeWeight(4);
+            mv.curveVertex(waveX, waveY);
+        }
+
+        mv.endShape();
+        mv.popStyle();
+    }
 }
