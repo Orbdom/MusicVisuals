@@ -34,7 +34,7 @@ public class Dima {
         //boats[0].Debug  = true;
 
         for(int i = 1; i < boats.length; i++){
-            boats[i] = new Boat(WaveArray[1], 200 * (i + 1), 100, 0, boats[0].Parent);
+            boats[i] = new Boat(WaveArray[1], 200 * (i + 1), 100, 0, boats[0].GetPShape());
         }
         
         duck = mv.loadShape("duck.obj");
@@ -42,11 +42,11 @@ public class Dima {
         duck2 = mv.loadShape("duck.obj");
         duck2.setFill(mv.color(40,255,255));
 
-        duckBoat = new Boat(WaveArray[1], mv.width*0.9f, 100, 50, duck);
-        duckBoat.Parent.scale(30);
-        duckBoat.Parent.rotateX(PApplet.PI/2f);
-        duckBoat.Parent.rotateY(-0.5f);
-        duckBoat.Parent.scale(1,1,0.09f);
+        duckBoat = new Boat(WaveArray[1], mv.width*0.8f, 100, 50, duck);
+        duckBoat.GetPShape().scale(30);
+        duckBoat.GetPShape().rotateX(PApplet.PI/2f);
+        duckBoat.GetPShape().rotateY(-0.5f);
+        duckBoat.GetPShape().scale(1,1,0.09f);
 
         vortex = new DuckVortex(mv, duck2);
         duckCircle = new DuckCircle(mv, duck2);
@@ -80,6 +80,7 @@ public class Dima {
                     b.Render(0.05f,0.1f,1.5f);
                 }
                 duckBoat.Render(0.05f,0.1f,1.5f);
+                duckBoat.ChangeX(-((mv.millis()/2000f)%8 - 4f));
 
                 mv.popMatrix();
             }

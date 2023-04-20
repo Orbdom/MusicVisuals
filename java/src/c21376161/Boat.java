@@ -4,11 +4,11 @@ import processing.core.PApplet;
 import processing.core.PShape;
 
 public class Boat extends Bobber {
-    public PShape Parent, BoatShape, Sail, Mast;
-    float drop = 0;
+    private PShape Parent, BoatShape, Sail, Mast;
+    private float drop = 0;
 
-    public Boat(Wave wave, float pos, float length, float drop){
-        super(wave, pos, length);
+    public Boat(Wave wave, float posX, float length, float drop){
+        super(wave, posX, length);
         this.drop = drop;
 
         Parent = p.createShape(PShape.GROUP);
@@ -69,8 +69,8 @@ public class Boat extends Bobber {
 
     }
 
-    public Boat(Wave wave, float pos, float length, float drop, PShape Parent){
-        super(wave, pos, length);
+    public Boat(Wave wave, float posX, float length, float drop, PShape Parent){
+        super(wave, posX, length);
         this.drop = drop;
         this.Parent = Parent;
     }
@@ -78,7 +78,7 @@ public class Boat extends Bobber {
     public void Render(float AngleRate, float HeightRate,float scale){
         GetAngle(AngleRate, HeightRate);
         p.pushMatrix();
-        p.translate(pos + length/2, LerpedMidHeight + drop);
+        p.translate(posX + length/2, LerpedMidHeight + drop);
         p.rotate(LerpedAngle);
         p.scale(scale);
 
@@ -89,5 +89,9 @@ public class Boat extends Bobber {
 
         p.shape(Parent);
         p.popMatrix();
+    }
+
+    public PShape GetPShape(){
+        return Parent;
     }
 }
