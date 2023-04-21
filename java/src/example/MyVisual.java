@@ -3,6 +3,7 @@ package example;
 import ie.tudublin.*;
 import c21376161.*;
 import c21344786.*;
+import c21427252.*;
 
 public class MyVisual extends Visual
 {    
@@ -11,6 +12,7 @@ public class MyVisual extends Visual
 
     float position;
     Dima dima;
+    Darren darren;
     int i = 0;
 
     public void settings()
@@ -42,6 +44,7 @@ public class MyVisual extends Visual
         abv = new AudioBandsVisual(this);
 
         dima = new Dima(this);
+        darren = new Darren(this);
     }
 
     public void keyPressed()
@@ -55,7 +58,7 @@ public class MyVisual extends Visual
 
     public void draw()
     {
-        background(0, 30);
+        background(0);
         try
         {
             // Call this if you want to use FFT data
@@ -72,9 +75,11 @@ public class MyVisual extends Visual
         calculateAverageAmplitude();        
         //wf.render();
         //abv.render();
-        fill(0,255,255,255);
-        rect(i + 10,10,10,10);
-        position = map(getAudioPlayer().position(), 0, getAudioPlayer().length(), 0, 100);
+        //fill(0,255,255,255);
+        //rect(i + 10,10,10,10);
+        
+        /*
+         position = map(getAudioPlayer().position(), 0, getAudioPlayer().length(), 0, 100);
         if(position < 10){
             dima.Visual(0);
         }
@@ -84,7 +89,13 @@ public class MyVisual extends Visual
         else{
             dima.Visual(2);
         }
-
+         */
+        float r;
+        r = random(20, 50);
+        fill(0,0,0,r);
+        rect(0, 0, width, height);
+        darren.render();
+        
         i+= 20;
         i%=width;
     }
