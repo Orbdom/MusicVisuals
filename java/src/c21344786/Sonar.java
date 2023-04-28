@@ -66,6 +66,7 @@ public class Sonar
 
         mv.popStyle();
 
+        mv.fill(255);
         mv.textSize(32);
         mv.textAlign(PConstants.LEFT);
         mv.text(title, topX, topY-10);
