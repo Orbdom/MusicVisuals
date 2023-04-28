@@ -123,8 +123,24 @@ public class Radar
         scanX = shapeX+(shapeR/2)*MyVisual.cos(MyVisual.radians(frame*speed));
         scanY = shapeY+(shapeR/2)*MyVisual.sin(MyVisual.radians(frame*speed));
 
+        float angle = MyVisual.atan2(scanY-shapeY, scanX-shapeX);
+
         mv.stroke(255);
         mv.strokeWeight(2);
         mv.line(shapeX, shapeY, scanX, scanY);
+
+        mv.pushMatrix();
+
+        // Contact direction arrow
+        mv.translate(scanX, scanY);
+        mv.rotate(angle);
+
+        mv.stroke(255);
+        mv.strokeWeight(2);
+        mv.line(0, 0, -10, 0);
+        mv.line(0, 0, -20, -5);
+        mv.line(0, 0, -20, 5);
+
+        mv.popMatrix();
     }
 }

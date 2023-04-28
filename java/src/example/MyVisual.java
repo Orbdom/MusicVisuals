@@ -78,7 +78,8 @@ public class MyVisual extends Visual
         rect(i + 10,10,10,10);
         position = map(getAudioPlayer().position(), 0, getAudioPlayer().length(), 0, 100);
         
+        // Include this colorMode() for my section, all my colours are in RGB!
         colorMode(RGB);
-        shawn.visual(0);
+        shawn.visual();
     }
 }
