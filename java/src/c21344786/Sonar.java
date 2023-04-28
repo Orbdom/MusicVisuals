@@ -7,10 +7,10 @@ public class Sonar
 {
     MyVisual mv;
 
-    float topX;
-    float topY;
     float shapeW;
     float shapeH;
+    float topX;
+    float topY;
     float lineX;
     float lineY;
     float waveX;
@@ -50,6 +50,7 @@ public class Sonar
             break;
         }
 
+        // Set method variables based from switch() operation
         topY = screenY;
         shapeW = width;
         shapeH = height;
