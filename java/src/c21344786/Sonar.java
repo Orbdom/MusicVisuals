@@ -21,7 +21,7 @@ public class Sonar
         this.mv = mv;
     }
 
-    public void screen(float screenX, float screenY, float width, float height, float cols, String title, int pos)
+    public void screen(float screenX, float screenY, float width, float height, float cols, String title, String unit, int pos)
     {
         switch(pos)
         {
@@ -55,6 +55,11 @@ public class Sonar
             mv.stroke(150);
             mv.strokeWeight(1);
             mv.line(lineY, topY, lineY, topY+shapeH);
+
+            mv.fill(255);
+            mv.textSize(16);
+            mv.textAlign(PConstants.CENTER);
+            mv.text(title, lineY, topY+shapeH+20);
         }
 
         mv.pushStyle();
