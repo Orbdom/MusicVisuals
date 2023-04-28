@@ -5,10 +5,7 @@ import c21376161.*;
 import c21344786.*;
 
 public class MyVisual extends Visual
-{    
-    WaveForm wf;
-    AudioBandsVisual abv;
-
+{
     float position;
     Dima dima;
     Shawn shawn;
@@ -16,12 +13,6 @@ public class MyVisual extends Visual
 
     public void settings()
     {
-        //size(1024, 500,P3D);
-        
-        // Use this to make fullscreen
-        //fullScreen();
-
-        // Use this to make fullscreen and use P3D for 3D graphics
         fullScreen(P3D, SPAN); 
         smooth();
     }
@@ -34,13 +25,6 @@ public class MyVisual extends Visual
                 
         // Call loadAudio to load an audio file to process 
         loadAudio("Moby Duck.mp3");   
-
-        
-        // Call this instead to read audio from the microphone
-        //startListening(); 
-        
-        wf = new WaveForm(this);
-        abv = new AudioBandsVisual(this);
 
         dima = new Dima(this);
         shawn = new Shawn(this);
@@ -78,8 +62,13 @@ public class MyVisual extends Visual
         rect(i + 10,10,10,10);
         position = map(getAudioPlayer().position(), 0, getAudioPlayer().length(), 0, 100);
         
+
+
         // Include this colorMode() for my section, all my colours are in RGB!
         colorMode(RGB);
         shawn.visual();
+
+
+        
     }
 }

@@ -21,8 +21,6 @@ public abstract class Visual extends PApplet
 	private float amplitude  = 0;
 	private float smothedAmplitude = 0;
 
-	
-	
 	public void startMinim() 
 	{
 		minim = new Minim(this);
@@ -34,7 +32,8 @@ public abstract class Visual extends PApplet
 
 	}
 
-	float log2(float f) {
+	float log2(float f)
+	{
 		return log(f) / log(2.0f);
 	}
 
@@ -51,7 +50,6 @@ public abstract class Visual extends PApplet
 		}
 	}
 
-	
 	public void calculateAverageAmplitude()
 	{
 		float total = 0;
@@ -63,8 +61,8 @@ public abstract class Visual extends PApplet
 		smothedAmplitude = PApplet.lerp(smothedAmplitude, amplitude, 0.1f);
 	}
 
-
-	protected void calculateFrequencyBands() {
+	protected void calculateFrequencyBands()
+	{
 		for (int i = 0; i < bands.length; i++) {
 			int start = (int) pow(2, i) - 1;
 			int w = (int) pow(2, i);

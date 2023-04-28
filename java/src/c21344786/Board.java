@@ -9,10 +9,8 @@ public class Board
 
     float screenW;
     float screenH;
-
     float shapeW;
     float shapeH;
-    
     float lineX;
     float lineH;
 
@@ -44,7 +42,7 @@ public class Board
         mv.rect(gap, gap, shapeW, shapeH);
 
         /*
-        // Board chalk lines
+        // Board chalk lines for object alignment
         for(int i = 1; i < row; i++)
         {
             lineX = gap+(i*lineH);

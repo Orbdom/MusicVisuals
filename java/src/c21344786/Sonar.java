@@ -9,13 +9,10 @@ public class Sonar
 
     float shapeW;
     float shapeH;
-
     float topX;
     float topY;
-
     float lineX;
     float lineY;
-    
     float waveX;
     float waveY;
 
@@ -63,7 +60,7 @@ public class Sonar
         {
             lineY = topX+i*shapeW/cols;
 
-            mv.stroke(255);
+            mv.stroke(204, 85, 0); // Change colour here
             mv.strokeWeight(1);
             mv.line(lineY, topY, lineY, topY+shapeH);
 
@@ -77,8 +74,8 @@ public class Sonar
 
         // Sonar screen border
         mv.fill(0);
-        mv.stroke(255);
-        mv.strokeWeight(4);
+        mv.stroke(204, 85, 0); // Change colour here
+        mv.strokeWeight(6);
         mv.rect(topX, topY, shapeW, shapeH);
 
         mv.popStyle();
@@ -103,7 +100,7 @@ public class Sonar
             waveY = MyVisual.constrain(waveY, topY, topY+shapeH);
 
             mv.noFill();
-            mv.stroke(255);
+            mv.stroke(0, 255, 0); // Change colour here
             mv.strokeWeight(2);
             mv.vertex(waveX, waveY);
         }
@@ -127,7 +124,7 @@ public class Sonar
 
             mv.smooth();
             mv.noFill();
-            mv.stroke(255);
+            mv.stroke(255, 255, 0); // Change colour here
             mv.strokeWeight(4);
             mv.curveVertex(waveX, waveY);
         }

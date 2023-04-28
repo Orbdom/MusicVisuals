@@ -39,16 +39,16 @@ public class Shawn
 
         sonar2.rawWave();
         sonar2.modWave(1.25f);
-        sonar2.screen(shapeW, 655, 1000, 375, 13, "Narrowband Sonar", "KHz", 0);
+        sonar2.screen(shapeW, 1040, 1000, 375, 13, "Narrowband Sonar", "KHz", 0);
 
         radar1.project(mv.frameCount, mv.getSmoothedAmplitude()/4);
         radar1.scan(mv.frameCount, 1.5f);
-        radar1.screen(shapeW, (shapeH/2)+50, 950, 6, 24, "Long-Range Radar", 2);
+        radar1.screen(shapeW, (shapeH/2)+75, 950, 6, 24, "Long-Range Radar", 2);
 
-        gauge1.screen(shapeW, 1190, 1000, 225, "Transmission Status", 0);
+        gauge1.screen(shapeW, 655, 1000, 225, "Radio Transmissions", 0);
         gauge1.scan(mv.frameCount, mv.getSmoothedAmplitude()/10, 0);
-        gauge1.scanScreen("To The Ol' Rust Bucket!", 180, 0);
+        gauge1.scanScreen("\"To The Ol' Rust Bucket!\"", 180, 0);
         gauge1.scan(mv.frameCount, mv.getSmoothedAmplitude()/8, 1);
-        gauge1.scanScreen("To Me Hearties!", 180, 1);
+        gauge1.scanScreen("\"To Me Hearties!\"", 180, 1);
     }
 }

@@ -11,11 +11,9 @@ public class Radar
     float shapeY;
     float shapeR;
     float shapeS;
-
     float lineX;
     float lineY;
     float lineA;
-
     float scanX;
     float scanY;
 
@@ -64,14 +62,14 @@ public class Radar
             if(i != 0)
             {
                 mv.noFill();
-                mv.stroke(255);
+                mv.stroke(2, 100, 32); // Change colour here
                 mv.strokeWeight(1);
                 mv.circle(shapeX, shapeY, maxRad);
             }
             else
             {
                 mv.fill(0);
-                mv.stroke(255);
+                mv.stroke(6, 150, 64); // Change colour here
                 mv.strokeWeight(6);
                 mv.circle(shapeX, shapeY, maxRad);
             }
@@ -86,7 +84,7 @@ public class Radar
             lineX = shapeX+MyVisual.cos(lineA)*shapeR/2;
             lineY = shapeY+MyVisual.sin(lineA)*shapeR/2;
 
-            mv.stroke(255);
+            mv.stroke(2, 100, 64); // Change colour here
             mv.strokeWeight(1);
             mv.line(shapeX, shapeY, lineX, lineY);
 
@@ -112,7 +110,7 @@ public class Radar
         scanX = shapeX+(shapeR/2)*MyVisual.cos(MyVisual.radians(frame*speed));
         scanY = shapeY+(shapeR/2)*MyVisual.sin(MyVisual.radians(frame*speed));
 
-        mv.stroke(255);
+        mv.stroke(0, 255, 0); // Change colour here
         mv.strokeWeight(6);
         mv.line(shapeX, shapeY, scanX, scanY);
     }
@@ -125,7 +123,7 @@ public class Radar
 
         float angle = MyVisual.atan2(scanY-shapeY, scanX-shapeX);
 
-        mv.stroke(255);
+        mv.stroke(255, 255, 0); // Change colour here
         mv.strokeWeight(2);
         mv.line(shapeX, shapeY, scanX, scanY);
 
@@ -135,7 +133,7 @@ public class Radar
         mv.translate(scanX, scanY);
         mv.rotate(angle);
 
-        mv.stroke(255);
+        mv.stroke(255, 255, 0); // Change colour here
         mv.strokeWeight(2);
         mv.line(0, 0, -10, 0);
         mv.line(0, 0, -20, -5);

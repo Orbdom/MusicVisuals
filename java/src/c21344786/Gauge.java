@@ -9,17 +9,11 @@ public class Gauge
 
     float shapeW;
     float shapeH;
-
     float topX;
     float topY;
-
     float lineX;
     float lineY;
     float lineA;
-
-    float dialX;
-    float dialY;
-
     float arcX;
     float arcY;
     float arcR;
@@ -66,9 +60,9 @@ public class Gauge
         mv.pushStyle();
 
         // Gauge screen border
-        mv.fill(255);
-        mv.stroke(0);
-        mv.strokeWeight(4);
+        mv.fill(8, 0, 0); // Change colour here
+        mv.stroke(255, 0, 0); // Change colour here
+        mv.strokeWeight(6);
         mv.rect(topX, topY, shapeW, shapeH);
 
         mv.popStyle();
@@ -107,21 +101,22 @@ public class Gauge
         mv.pushStyle();
 
         // Needle holder
-        mv.fill(0);
+        mv.fill(255, 0, 0); // Change colour here
         mv.noStroke();
         mv.arc(arcX, arcY, arcR/2, arcR/2, PConstants.PI, PConstants.TWO_PI);
 
         mv.popStyle();
 
-        mv.noFill();
-        mv.stroke(0);
+        mv.noFill(); // Change colour here
+        mv.stroke(255, 0 ,0); // Change colour here
         mv.strokeWeight(4);
         mv.arc(arcX, arcY, arcR*2, arcR*2, PConstants.PI, PConstants.TWO_PI);
 
         mv.pushStyle();
 
+        // Dial title
         mv.fill(255);
-        mv.textSize(16);
+        mv.textSize(18);
         mv.textAlign(PConstants.CENTER);
         mv.text(title, arcX, arcY+25);
 
@@ -155,7 +150,7 @@ public class Gauge
         lineX = arcX-arcR*MyVisual.cos(lineA);
         lineY = arcY+arcR*(-MyVisual.sin(lineA));
 
-        mv.stroke(0);
+        mv.stroke(255, 0, 0); // Change colour here
         mv.strokeWeight(4);
         mv.line(arcX, arcY, lineX, lineY);
     }
