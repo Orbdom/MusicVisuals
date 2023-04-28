@@ -9,10 +9,13 @@ public class Sonar
 
     float shapeW;
     float shapeH;
+
     float topX;
     float topY;
+
     float lineX;
     float lineY;
+    
     float waveX;
     float waveY;
 
@@ -60,12 +63,12 @@ public class Sonar
         {
             lineY = topX+i*shapeW/cols;
 
-            mv.stroke(200);
+            mv.stroke(255);
             mv.strokeWeight(1);
             mv.line(lineY, topY, lineY, topY+shapeH);
 
             mv.fill(255);
-            mv.textSize(16);
+            mv.textSize(18);
             mv.textAlign(PConstants.CENTER);
             mv.text(i + unit, lineY, topY+shapeH+25);
         }
@@ -73,7 +76,7 @@ public class Sonar
         mv.pushStyle();
 
         // Sonar screen border
-        mv.noFill();
+        mv.fill(0);
         mv.stroke(255);
         mv.strokeWeight(4);
         mv.rect(topX, topY, shapeW, shapeH);
@@ -100,7 +103,7 @@ public class Sonar
             waveY = MyVisual.constrain(waveY, topY, topY+shapeH);
 
             mv.noFill();
-            mv.stroke(0, 255, 0);
+            mv.stroke(255);
             mv.strokeWeight(2);
             mv.vertex(waveX, waveY);
         }
@@ -124,7 +127,7 @@ public class Sonar
 
             mv.smooth();
             mv.noFill();
-            mv.stroke(255, 255, 0);
+            mv.stroke(255);
             mv.strokeWeight(4);
             mv.curveVertex(waveX, waveY);
         }

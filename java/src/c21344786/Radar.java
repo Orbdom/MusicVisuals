@@ -19,12 +19,14 @@ public class Radar
     float scanX;
     float scanY;
 
+    // Constructor method
     public Radar(MyVisual mv)
     {
         this.mv = mv;
     }
 
-    public void screen(float screenX, float screenY, float maxRad, float range, float sectors, int pos)
+    // Radar screen creation method
+    public void screen(float screenX, float screenY, float maxRad, float range, float sectors, String title, int pos)
     {
         // Screen alignment on board
         switch(pos)
@@ -51,57 +53,78 @@ public class Radar
             break;
         }
 
+        // Set method variables from the switch() operation
         shapeY = screenY;
         shapeR = maxRad;
         shapeS = shapeY/range;
 
+        // Radar screen border/range lines (concentric circles)
         for(int i = 0; i < range; i++)
         {
             if(i != 0)
             {
                 mv.noFill();
-                mv.stroke(200);
+                mv.stroke(255);
                 mv.strokeWeight(1);
                 mv.circle(shapeX, shapeY, maxRad);
             }
             else
             {
-                mv.noFill();
+                mv.fill(0);
                 mv.stroke(255);
-                mv.strokeWeight(4);
+                mv.strokeWeight(6);
                 mv.circle(shapeX, shapeY, maxRad);
             }
 
             maxRad -= shapeS;
         }
 
+        // Radar screen sector lines/course headings
         for(int i = 0; i < sectors; i++)
         {
             lineA = PConstants.TWO_PI*i/sectors;
             lineX = shapeX+MyVisual.cos(lineA)*shapeR/2;
             lineY = shapeY+MyVisual.sin(lineA)*shapeR/2;
 
-            mv.stroke(200);
+            mv.stroke(255);
             mv.strokeWeight(1);
             mv.line(shapeX, shapeY, lineX, lineY);
 
-            float labelX = shapeX+MyVisual.cos(lineA)*(shapeR/2+30);
-            float labelY = shapeY+MyVisual.sin(lineA)*(shapeR/2+30);
+            float headingX = shapeX+MyVisual.cos(lineA)*(shapeR/2+35);
+            float headingY = shapeY+MyVisual.sin(lineA)*(shapeR/2+35);
 
             mv.fill(255);
-            mv.textSize(18);
+            mv.textSize(20);
             mv.textAlign(PConstants.CENTER, PConstants.CENTER);
-            mv.text(MyVisual.round(MyVisual.degrees(lineA)) + "°", labelX, labelY);
+            mv.text(MyVisual.round(MyVisual.degrees(lineA)) + "°", headingX, headingY);
         }
+
+        // Radar title
+        mv.fill(255);
+        mv.textSize(48);
+        mv.textAlign(PConstants.CENTER, PConstants.CENTER);
+        mv.text(title, shapeX, shapeY-(shapeR/2)-100);
     }
 
+    // Radar scanning method
     public void scan(float frame, float speed)
     {
         scanX = shapeX+(shapeR/2)*MyVisual.cos(MyVisual.radians(frame*speed));
         scanY = shapeY+(shapeR/2)*MyVisual.sin(MyVisual.radians(frame*speed));
 
-        mv.stroke(255, 255, 0);
-        mv.strokeWeight(4);
+        mv.stroke(255);
+        mv.strokeWeight(6);
+        mv.line(shapeX, shapeY, scanX, scanY);
+    }
+
+    // Radar projection method (in place of a radar contact)
+    public void project(float frame, float speed)
+    {
+        scanX = shapeX+(shapeR/2)*MyVisual.cos(MyVisual.radians(frame*speed));
+        scanY = shapeY+(shapeR/2)*MyVisual.sin(MyVisual.radians(frame*speed));
+
+        mv.stroke(255);
+        mv.strokeWeight(2);
         mv.line(shapeX, shapeY, scanX, scanY);
     }
 }

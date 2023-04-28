@@ -9,8 +9,10 @@ public class Board
 
     float screenW;
     float screenH;
+
     float shapeW;
     float shapeH;
+    
     float lineX;
     float lineH;
 
@@ -41,6 +43,7 @@ public class Board
         mv.fill(39, 76, 67);
         mv.rect(gap, gap, shapeW, shapeH);
 
+        /*
         // Board chalk lines
         for(int i = 1; i < row; i++)
         {
@@ -50,6 +53,7 @@ public class Board
             mv.strokeWeight(1);
             mv.line(gap, lineX, shapeW+gap, lineX);
         }
+        */
 
         mv.popStyle();
 

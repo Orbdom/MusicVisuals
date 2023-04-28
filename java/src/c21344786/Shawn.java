@@ -47,8 +47,9 @@ public class Shawn
                 sonar2.modWave(1.25f);
                 sonar2.screen(shapeW, 655, 1000, 375, 13, "Narrowband Sonar", "KHz", 0);
 
-                radar1.scan(mv.frameCount, 2.0f);
-                radar1.screen(shapeW, (shapeH/2)+50, 1050, 8, 12, 2);
+                radar1.project(mv.frameCount, mv.getAmplitude());
+                radar1.scan(mv.frameCount, 1.0f);
+                radar1.screen(shapeW, (shapeH/2)+50, 950, 6, 24, "Long-Range Radar", 2);
             }
             break;
 
