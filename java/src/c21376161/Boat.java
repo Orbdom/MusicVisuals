@@ -75,12 +75,28 @@ public class Boat extends Bobber {
         this.Parent = Parent;
     }
 
+    public void setFill(boolean Fill){
+        Parent.setFill(Fill);
+    }
+
     public void setFill(int R, int G, int B){
         Parent.setFill(p.color(R, G, B));
     }
 
+    public void setFill(int R, int G, int B, int A){
+        Parent.setFill(p.color(R, G, B, A));
+    }
+
+    public void setStroke(boolean Stroke){
+        Parent.setStroke(Stroke);
+    }
+
     public void setStroke(int R, int G, int B){
         Parent.setStroke(p.color(R, G, B));
+    }
+
+    public void setStroke(int R, int G, int B, int A){
+        Parent.setFill(p.color(R, G, B, A));
     }
 
     public void Render(float AngleRate, float HeightRate,float scale){
