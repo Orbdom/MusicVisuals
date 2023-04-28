@@ -72,15 +72,15 @@ public class MyVisual extends Visual
 
         position = map(getAudioPlayer().position(), 0, getAudioPlayer().length(), 0, 100);
 
-        if(position < 20.2){
+        if(position < 20){
             background(0);
             norbert.visual();  
             
         }
-        if(position > 20 && position < 40){
+        if(position > 19.99f && position < 30){
             dima.Visual(2);
         }
-        else if(position > 39.99f && position < 60){    
+        else if(position > 29.99f && position < 40){    
             dima.Visual(0); 
         }
     }
