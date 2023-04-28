@@ -39,8 +39,8 @@ public class Shawn
 
                 board1.screen(30, 20, "Info On The Duck?", 180);
                 
-                sonar1.rawWave();
-                sonar1.modWave(0.5f);
+                //sonar1.rawWave();
+                sonar1.modWave(0.35f);
                 sonar1.screen(shapeW, 300, 1000, 300, 15, "Broadband Sonar", 0);
 
                 sonar2.modWave(1.0f);
