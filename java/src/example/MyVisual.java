@@ -67,17 +67,13 @@ public class MyVisual extends Visual
         //// Call this is you want to get the average amplitude
         calculateAverageAmplitude();        
 
-        fill(0,255,255,255);
-        rect(i + 10,10,10,10);
         position = map(getAudioPlayer().position(), 0, getAudioPlayer().length(), 0, 100);
-        if(position < 20){
+
+        if(position < 0){
             dima.Visual(2);
         }
         else{
             dima.Visual(0);
         }
-
-        i+= 20;
-        i%=width;
     }
 }

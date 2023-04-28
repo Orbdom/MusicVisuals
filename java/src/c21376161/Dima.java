@@ -6,7 +6,8 @@ import processing.core.PShape;
 
 public class Dima {
     Wave WaveArray[];
-    int WaveAmount = 3;
+    int WaveAmount = 9;
+    int WaveSet = WaveAmount/2;
 
     Boat boats[], duckBoat;
     MyVisual mv;
@@ -17,6 +18,8 @@ public class Dima {
 
     public Dima(MyVisual mv){
         this.mv = mv;
+
+        int WaveHeightOffset = 30;
         
         //MainWave =  new Wave(this.mv, mv.width, mv.height/2, 200);
         //Wave2 =     new Wave(this.mv, mv.width, mv.height/2 - 10, 200);
@@ -24,17 +27,18 @@ public class Dima {
 
         WaveArray = new Wave[WaveAmount];
         for(int i = 0; i < WaveAmount; i++){
-            WaveArray[i] = new Wave(mv, mv.width, mv.height/2 - (20 * (-1 + i)), 200);
+            WaveArray[i] = new Wave(mv, mv.width, mv.height/2 - (WaveHeightOffset * (-WaveAmount/2 + i)), 200);
         }
 
         //ship = mv.loadShape("Ship.obj");
         boats = new Boat[3];
-        boats[0] = new Boat(WaveArray[1], 200, 50, 0);
+        boats[0] = new Boat(WaveArray[WaveSet], 200, 50, 0);
 
         //boats[0].Debug  = true;
 
         for(int i = 1; i < boats.length; i++){
-            boats[i] = new Boat(WaveArray[1], 200 * (i + 1), 100, 0, boats[0].GetPShape());
+            boats[i] = new Boat(WaveArray[WaveSet], 200 * (i + 1), 100, 0, boats[0].GetPShape());
+            boats[i].setStroke(255,255,255);
         }
         
         duck = mv.loadShape("duck.obj");
@@ -42,7 +46,7 @@ public class Dima {
         duck2 = mv.loadShape("duck.obj");
         duck2.setFill(mv.color(40,255,255));
 
-        duckBoat = new Boat(WaveArray[1], mv.width*0.8f, 100, 50, duck);
+        duckBoat = new Boat(WaveArray[WaveSet], mv.width*0.8f, 100, 50, duck);
         duckBoat.GetPShape().scale(30);
         duckBoat.GetPShape().rotateX(PApplet.PI/2f);
         duckBoat.GetPShape().rotateY(-0.5f);
@@ -60,27 +64,35 @@ public class Dima {
         switch(VisIndex){
             case 0:{
                 
-                mv.stroke(255);
+                
 
                 mv.pushMatrix();
                 mv.pushMatrix();
                 for(int i = 0; i < WaveAmount; i++){
+                    float Brightness = 255f*(float)(WaveAmount - i)/WaveAmount;
+                    mv.stroke(120,255,Brightness);
                     
+                    mv.strokeWeight(1);
                     mv.translate(0, 0, -10);
 
                     WaveArray[i].SetWave();
                     WaveArray[i].RenderWave(-i - 1);
 
+                    mv.stroke(174,255,Brightness);
+                    WaveArray[i].JoinWaveVerts((i - 1 < 0)?null: WaveArray[i-1]);
+
                 }
                 mv.popMatrix();
 
-                mv.translate(0,0,-20);    //makes Pshape render infront of wave
+                mv.translate(0,0,-10 * (WaveSet + 1));    //makes Pshape render infront of wave
 
                 for(Boat b: boats){
+                    mv.stroke(255,255,255);
                     b.Render(0.05f,0.1f,1.5f);
+                    b.ChangeX(-PApplet.sin(mv.millis()/1500f));
                 }
                 duckBoat.Render(0.05f,0.1f,1.5f);
-                duckBoat.ChangeX(-((mv.millis()/2000f)%8 - 4f));
+                duckBoat.ChangeX(-PApplet.sin(mv.millis()/1500f));
 
                 mv.popMatrix();
             }
