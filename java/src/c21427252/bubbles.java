@@ -16,7 +16,7 @@ public class bubbles
     private float width;
     private float height;
     private PApplet p;
-    private int size = 72;
+    private int size = 2000;
     //private int lives = 3;
     private PVector pos;
 

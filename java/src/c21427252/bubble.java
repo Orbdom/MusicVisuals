@@ -21,7 +21,7 @@ public class bubble
     {
         p.noStroke();
         //p.println(p.millis());
-        p.fill((p.millis()/500)%256 ,255,255);
+        p.fill((p.millis()/250)%256 ,255,255);
         p.circle(pos.x, pos.y, 15);
 
     }
@@ -37,25 +37,25 @@ public class bubble
         
         if(pos.x > p.width)
         {
-            DirX *= -1.5;
+            DirX *= -1.25;
             lives--; 
         }
         
         if(pos.x < 0) 
         {
-            DirX *= -1.5;
+            DirX *= -1.25;
             lives--;
         }
 
         if(pos.y > p.height)
         {
-            DirY *= -1.5;
+            DirY *= -1.25;
             lives--;
         }
         
         if(pos.y < 0) 
         {
-            DirY *= -1.5;
+            DirY *= -1.25;
             lives--;
         }
         //c = 
@@ -67,9 +67,9 @@ public class bubble
         if (lives > 0)
         {
             explosion();
-            lives = 10;
+            
         }
-        
+        lives = 10;
         //p.circle(, 11);
         //DirX=PApplet.constrain(DirX, 0, p.width);
         //DirY=PApplet.constrain(DirY, 0, p.height);
