@@ -2,6 +2,8 @@ package example;
 
 import ie.tudublin.*;
 import c21376161.*;
+import c21344786.*;
+import c21518659.*;
 
 public class MyVisual extends Visual
 {    
@@ -10,6 +12,7 @@ public class MyVisual extends Visual
 
     float position;
     Dima dima;
+    Norbert norbert;
     int i = 0;
 
     public void settings()
@@ -31,13 +34,14 @@ public class MyVisual extends Visual
         startMinim();
                 
         // Call loadAudio to load an audio file to process 
-        loadAudio("Moby Duck.mp3");   
+        loadAudio("MobyDuck.wav");   
 
         
         // Call this instead to read audio from the microphone
         //startListening(); 
 
         dima = new Dima(this);
+        norbert = new Norbert(this);
     }
 
     public void keyPressed()
@@ -51,7 +55,6 @@ public class MyVisual extends Visual
 
     public void draw()
     {
-        background(0, 30);
         try
         {
             // Call this if you want to use FFT data
@@ -69,11 +72,16 @@ public class MyVisual extends Visual
 
         position = map(getAudioPlayer().position(), 0, getAudioPlayer().length(), 0, 100);
 
-        if(position < 0){
+        if(position < 20.2){
+            background(0);
+            norbert.visual();  
+            
+        }
+        if(position > 20 && position < 40){
             dima.Visual(2);
         }
-        else{
-            dima.Visual(0);
+        else if(position > 39.99f && position < 60){    
+            dima.Visual(0); 
         }
     }
 }

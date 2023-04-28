@@ -42,6 +42,7 @@ public class Dima {
         }
         
         duck = mv.loadShape("duck.obj");
+
         duck.setFill(mv.color(40,255,255));
         duck2 = mv.loadShape("duck.obj");
         duck2.setFill(mv.color(40,255,255));
