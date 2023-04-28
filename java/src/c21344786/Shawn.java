@@ -44,7 +44,7 @@ public class Shawn
                 sonar1.screen(shapeW, 270, 1000, 300, 7, "Broadband Sonar", "Hz", 0);
 
                 sonar2.rawWave();
-                sonar2.modWave(1.2f);
+                sonar2.modWave(1.25f);
                 sonar2.screen(shapeW, 730, 1000, 375, 13, "Narrowband Sonar", "KHz", 0);
             }
             break;

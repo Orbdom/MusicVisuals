@@ -16,27 +16,33 @@ public class Sonar
     float waveX;
     float waveY;
 
+    // Constructor method
     public Sonar(MyVisual mv)
     {
         this.mv = mv;
     }
 
+    // Sonar screen creation method
     public void screen(float screenX, float screenY, float width, float height, float cols, String title, String unit, int pos)
     {
+        // Screen alignment on board
         switch(pos)
         {
+            // Left-align sonar screen
             case 0:
             {
                 topX = (screenX/4)-(width/2);
             }
             break;
 
+            // Center-align sonar screen
             case 1:
             {
                 topX = (screenX/2)-(width/2);
             }
             break;
 
+            // Right-align sonar screen
             case 2:
             {
                 topX = (screenX*3/4)-(width/2);
@@ -48,11 +54,12 @@ public class Sonar
         shapeW = width;
         shapeH = height;
 
+        // Sonar frequency lines/units
         for(int i = 1; i < cols; i++)
         {
             lineY = topX+i*shapeW/cols;
 
-            mv.stroke(150);
+            mv.stroke(200);
             mv.strokeWeight(1);
             mv.line(lineY, topY, lineY, topY+shapeH);
 
@@ -64,6 +71,7 @@ public class Sonar
 
         mv.pushStyle();
 
+        // Sonar screen border
         mv.noFill();
         mv.stroke(255);
         mv.strokeWeight(4);
@@ -71,12 +79,14 @@ public class Sonar
 
         mv.popStyle();
 
+        // Sonar title
         mv.fill(255);
         mv.textSize(34);
         mv.textAlign(PConstants.LEFT);
         mv.text(title, topX, topY-10);
     }
 
+    // Raw wave visualisation method (without any scaling/lerp functions)
     public void rawWave()
     {
         mv.pushStyle();
@@ -98,6 +108,7 @@ public class Sonar
         mv.popStyle();
     }
 
+    // Wave visualisation method (with scaling/lerp functions)
     public void modWave(float scale)
     {
         mv.pushStyle();
