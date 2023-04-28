@@ -6,7 +6,7 @@ import processing.core.PShape;
 
 public class Dima {
     Wave WaveArray[];
-    int WaveAmount = 9;
+    int WaveAmount = 8;
     int WaveSet = WaveAmount/2;
 
     Boat boats[], duckBoat;
@@ -19,7 +19,7 @@ public class Dima {
     public Dima(MyVisual mv){
         this.mv = mv;
 
-        int WaveHeightOffset = 30;
+        int WaveHeightOffset = 50;
         
         //MainWave =  new Wave(this.mv, mv.width, mv.height/2, 200);
         //Wave2 =     new Wave(this.mv, mv.width, mv.height/2 - 10, 200);
@@ -44,13 +44,18 @@ public class Dima {
         duck = mv.loadShape("duck.obj");
 
         duck.setFill(mv.color(40,255,255));
+        //duck.setFill(false);
+        //duck.setStroke(true);
+        //duck.setStrokeWeight(0.02f);
+        //duck.setStroke(mv.color(40,255,255));
+        
         duck2 = mv.loadShape("duck.obj");
         duck2.setFill(mv.color(40,255,255));
 
         duckBoat = new Boat(WaveArray[WaveSet], mv.width*0.8f, 100, 50, duck);
         duckBoat.GetPShape().scale(30);
         duckBoat.GetPShape().rotateX(PApplet.PI/2f);
-        duckBoat.GetPShape().rotateY(-0.5f);
+        //duckBoat.GetPShape().rotateY(-0.5f);
         duckBoat.GetPShape().scale(1,1,0.09f);
 
         vortex = new DuckVortex(mv, duck2);
@@ -77,7 +82,7 @@ public class Dima {
                     mv.translate(0, 0, -10);
 
                     WaveArray[i].SetWave();
-                    WaveArray[i].RenderWave(-i - 1);
+                    WaveArray[i].RenderWave((-i - 1)/2f);
 
                     mv.stroke(174,255,Brightness);
                     WaveArray[i].JoinWaveVerts((i - 1 < 0)?null: WaveArray[i-1]);
@@ -92,8 +97,9 @@ public class Dima {
                     b.Render(0.05f,0.1f,1.5f);
                     b.ChangeX(-PApplet.sin(mv.millis()/1500f));
                 }
+                mv.translate(0,0,-9);
                 duckBoat.Render(0.05f,0.1f,1.5f);
-                duckBoat.ChangeX(-PApplet.sin(mv.millis()/1500f));
+                duckBoat.ChangeX(PApplet.sin(mv.millis()/1500f));
 
                 mv.popMatrix();
             }
