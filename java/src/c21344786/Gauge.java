@@ -69,7 +69,7 @@ public class Gauge
 
         // Gauge title
         mv.fill(255);
-        mv.textSize(34);
+        mv.textSize(34); // Hard-coded
         mv.textAlign(PConstants.LEFT);
         mv.text(title, topX, topY-10);
     }
@@ -116,7 +116,7 @@ public class Gauge
 
         // Dial title
         mv.fill(255);
-        mv.textSize(18);
+        mv.textSize(18); // Hard-coded
         mv.textAlign(PConstants.CENTER);
         mv.text(title, arcX, arcY+25);
 

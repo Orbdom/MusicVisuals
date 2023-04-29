@@ -65,7 +65,7 @@ public class Sonar
             mv.line(lineY, topY, lineY, topY+shapeH);
 
             mv.fill(255);
-            mv.textSize(18);
+            mv.textSize(18); // Hard-coded
             mv.textAlign(PConstants.CENTER);
             mv.text(i + unit, lineY, topY+shapeH+25);
         }
@@ -82,7 +82,7 @@ public class Sonar
 
         // Sonar title
         mv.fill(255);
-        mv.textSize(34);
+        mv.textSize(34); // Hard-coded
         mv.textAlign(PConstants.LEFT);
         mv.text(title, topX, topY-10);
     }

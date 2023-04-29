@@ -92,14 +92,14 @@ public class Radar
             float headingY = shapeY+MyVisual.sin(lineA)*(shapeR/2+35);
 
             mv.fill(255);
-            mv.textSize(20);
+            mv.textSize(20); // Hard-coded
             mv.textAlign(PConstants.CENTER, PConstants.CENTER);
             mv.text(MyVisual.round(MyVisual.degrees(lineA)) + "°", headingX, headingY);
         }
 
         // Radar title
         mv.fill(255);
-        mv.textSize(48);
+        mv.textSize(48); // Hard-coded
         mv.textAlign(PConstants.CENTER, PConstants.CENTER);
         mv.text(title, shapeX, shapeY-(shapeR/2)-100);
     }

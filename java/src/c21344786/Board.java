@@ -57,7 +57,7 @@ public class Board
 
         // Board title
         mv.fill(255);
-        mv.textSize(100);
+        mv.textSize(100); // Hard-coded
         mv.textAlign(PConstants.CENTER);
         mv.text(title, shapeW/2+gap, titleY);
     }
