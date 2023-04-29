@@ -24,7 +24,7 @@ public class Board
     }
     
     // Background creation method
-    public void screen(float gap, float row, String title, float titleY)
+    public void screen(float gap, float row, String title, float titleS)
     {
         // Calculations to determine max screen
         shapeW = screenW-(gap*2);
@@ -57,9 +57,9 @@ public class Board
 
         // Board title
         mv.fill(255);
-        mv.textSize(100); // Hard-coded
+        mv.textSize(titleS);
         mv.textAlign(PConstants.CENTER);
-        mv.text(title, shapeW/2+gap, titleY);
+        mv.text(title, shapeW/2+gap, (shapeH-shapeH)+(shapeH/8));
     }
 
     // Get method for setting object max width

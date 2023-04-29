@@ -14,6 +14,7 @@ public class Shawn
 
     float shapeW;
     float shapeH;
+    float shapeG;
 
     public Shawn(MyVisual mv)
     {
@@ -28,27 +29,29 @@ public class Shawn
 
     public void visual()
     {
-        shapeW = board1.getWidth();
-        shapeH = board1.getHeight();
+        shapeG = 30;
 
-        board1.screen(30, 20, "Info On The Duck?", 180); // Hard-coded
+        shapeW = board1.getWidth()-shapeG;
+        shapeH = board1.getHeight()-shapeG;
+
+        board1.screen(shapeG, 20, "Info On The Duck?", shapeH/16);
         
         //sonar1.rawWave();
         sonar1.modWave(0.35f);
-        sonar1.screen(shapeW, 270, 1000, 225, 7, "Broadband Sonar", "Hz", 0); // Hard-coded
+        sonar1.screen(shapeW, (shapeH/2)-(shapeH/3), shapeW/2.5f, shapeH/6, 7, "Broadband Sonar", shapeH/42, "Hz", 0);
 
         sonar2.rawWave();
         sonar2.modWave(1.25f);
-        sonar2.screen(shapeW, 1040, 1000, 375, 13, "Narrowband Sonar", "KHz", 0); // Hard-coded
+        sonar2.screen(shapeW, (shapeH/2)+(shapeH/5), shapeW/2.5f, shapeH/6, 13, "Narrowband Sonar", shapeH/42, "KHz", 0);
 
-        gauge1.screen(shapeW, 655, 1000, 225, "Radio Transmissions", 0); // Hard-coded
-        gauge1.scan(mv.frameCount, mv.getSmoothedAmplitude()/10, 0);
-        gauge1.scanScreen("\"To The Ol' Rust Bucket!\"", 180, 0); // Hard-coded
-        gauge1.scan(mv.frameCount, mv.getSmoothedAmplitude()/8, 1);
-        gauge1.scanScreen("\"To Me Hearties!\"", 180, 1); // Hard-coded
+        gauge1.screen(shapeW, (shapeH/2)-(shapeH/16), shapeW/2.5f, shapeH/6, "Radio Transmissions", shapeH/42, 0);
+        gauge1.scan(mv.frameCount, mv.getAmplitude()/16, 0);
+        gauge1.scanScreen("\"To The Ol' Rust Bucket!\"", shapeH/8, 0);
+        gauge1.scan(mv.frameCount, mv.getSmoothedAmplitude()/10, 1);
+        gauge1.scanScreen("\"To Me Hearties!\"", shapeH/8, 1);
 
         radar1.project(mv.frameCount, mv.getSmoothedAmplitude()/4);
         radar1.scan(mv.frameCount, 1.5f);
-        radar1.screen(shapeW, (shapeH/2)+75, 950, 6, 24, "Long-Range Radar", 2); // Hard-coded
+        radar1.screen(shapeW, shapeH*11/20, shapeH/1.55f, 6, 24, "Long-Range Radar", shapeH/36, 2);
     }
 }

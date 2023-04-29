@@ -24,7 +24,7 @@ public class Radar
     }
 
     // Radar screen creation method
-    public void screen(float screenX, float screenY, float maxRad, float range, float sectors, String title, int pos)
+    public void screen(float screenX, float screenY, float maxRad, float range, float sectors, String title, float titleS, int pos)
     {
         // Screen alignment on board
         switch(pos)
@@ -88,20 +88,20 @@ public class Radar
             mv.strokeWeight(1);
             mv.line(shapeX, shapeY, lineX, lineY);
 
-            float headingX = shapeX+MyVisual.cos(lineA)*(shapeR/2+35);
-            float headingY = shapeY+MyVisual.sin(lineA)*(shapeR/2+35);
+            float headingX = shapeX+MyVisual.cos(lineA)*(shapeR/2+(shapeR*0.03f));
+            float headingY = shapeY+MyVisual.sin(lineA)*(shapeR/2+(shapeR*0.03f));
 
             mv.fill(255);
-            mv.textSize(20); // Hard-coded
+            mv.textSize(titleS/2.5f);
             mv.textAlign(PConstants.CENTER, PConstants.CENTER);
             mv.text(MyVisual.round(MyVisual.degrees(lineA)) + "°", headingX, headingY);
         }
 
         // Radar title
         mv.fill(255);
-        mv.textSize(48); // Hard-coded
+        mv.textSize(titleS);
         mv.textAlign(PConstants.CENTER, PConstants.CENTER);
-        mv.text(title, shapeX, shapeY-(shapeR/2)-100);
+        mv.text(title, shapeX, shapeY-(shapeR/2)-(shapeR/11));
     }
 
     // Radar scanning method

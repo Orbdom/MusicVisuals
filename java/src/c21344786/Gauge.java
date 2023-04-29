@@ -17,6 +17,7 @@ public class Gauge
     float arcX;
     float arcY;
     float arcR;
+    float titleS;
 
     // Constructor method
     public Gauge(MyVisual mv)
@@ -25,8 +26,10 @@ public class Gauge
     }
 
     // Gauge screen creation method
-    public void screen(float screenX, float screenY, float width, float height, String title, int pos)
+    public void screen(float screenX, float screenY, float width, float height, String title, float titleS, int pos)
     {
+        this.titleS = titleS;
+
         // Screen alignment on board
         switch(pos)
         {
@@ -69,7 +72,7 @@ public class Gauge
 
         // Gauge title
         mv.fill(255);
-        mv.textSize(34); // Hard-coded
+        mv.textSize(titleS);
         mv.textAlign(PConstants.LEFT);
         mv.text(title, topX, topY-10);
     }
@@ -116,7 +119,7 @@ public class Gauge
 
         // Dial title
         mv.fill(255);
-        mv.textSize(18); // Hard-coded
+        mv.textSize(titleS/2);
         mv.textAlign(PConstants.CENTER);
         mv.text(title, arcX, arcY+25);
 

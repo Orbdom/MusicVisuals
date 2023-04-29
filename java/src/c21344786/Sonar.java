@@ -23,7 +23,7 @@ public class Sonar
     }
 
     // Sonar screen creation method
-    public void screen(float screenX, float screenY, float width, float height, float cols, String title, String unit, int pos)
+    public void screen(float screenX, float screenY, float width, float height, float cols, String title, float titleS, String unit, int pos)
     {
         // Screen alignment on board
         switch(pos)
@@ -65,7 +65,7 @@ public class Sonar
             mv.line(lineY, topY, lineY, topY+shapeH);
 
             mv.fill(255);
-            mv.textSize(18); // Hard-coded
+            mv.textSize(titleS/2.5f);
             mv.textAlign(PConstants.CENTER);
             mv.text(i + unit, lineY, topY+shapeH+25);
         }
@@ -82,7 +82,7 @@ public class Sonar
 
         // Sonar title
         mv.fill(255);
-        mv.textSize(34); // Hard-coded
+        mv.textSize(titleS);
         mv.textAlign(PConstants.LEFT);
         mv.text(title, topX, topY-10);
     }
