@@ -1,8 +1,8 @@
 # Music Visualiser Project
 
-Name:
+Name: Domas Mockus
 
-Student Number: 
+Student Number: C21321073
 
 ## Instructions
 - Fork this repository and use it a starter project for your assignment
@@ -13,11 +13,19 @@ Student Number:
 
 # Description of the assignment
 
+Make a music visualizer, i have a music visualizer that displays squares with a picture of a duck as my song is duck themed.
+
 # Instructions
+
+just press play
 
 # How it works
 
+It draws squares and stacks them into columns by calculated current position and adding a gap
+
 # What I am most proud of in the assignment
+
+Getting the columns to stack correctly.
 
 # Markdown Tutorial
 
