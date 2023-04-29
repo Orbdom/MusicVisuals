@@ -9,6 +9,7 @@ public class bubble
     private PVector pos;
     private PApplet p;
     private int lives = 10;
+    float bounce = 0.75f;
     
     public bubble(PVector pos, PApplet p)
     {
@@ -37,25 +38,25 @@ public class bubble
         
         if(pos.x > p.width)
         {
-            DirX *= -1.25;
+            DirX *= -1.05;
             lives--; 
         }
         
         if(pos.x < 0) 
         {
-            DirX *= -1.25;
+            DirX *= -1.05;
             lives--;
         }
 
         if(pos.y > p.height)
         {
-            DirY *= -1.25;
+            DirY *= -1.05;
             lives--;
         }
         
         if(pos.y < 0) 
         {
-            DirY *= -1.25;
+            DirY *= -1.05;
             lives--;
         }
         //c = 
