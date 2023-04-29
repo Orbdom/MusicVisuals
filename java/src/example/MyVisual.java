@@ -71,16 +71,15 @@ public class MyVisual extends Visual
         calculateAverageAmplitude();        
 
         position = map(getAudioPlayer().position(), 0, getAudioPlayer().length(), 0, 100);
-
+        
         if(position < 20){
             background(0);
-            norbert.visual();  
-            
+            norbert.visual();   
         }
         if(position > 19.99f && position < 30){
             dima.Visual(2);
         }
-        else if(position > 29.99f && position < 40){    
+        if(position > 29.99f && position < 40){    
             dima.Visual(0); 
         }
     }
