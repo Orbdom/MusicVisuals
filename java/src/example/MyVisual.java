@@ -6,23 +6,15 @@ import c21344786.*;
 import c21518659.*;
 
 public class MyVisual extends Visual
-{    
-    WaveForm wf;
-    AudioBandsVisual abv;
-
+{
     float position;
     Dima dima;
     Norbert norbert;
+    Shawn shawn;
     int i = 0;
 
     public void settings()
     {
-        //size(1024, 500,P3D);
-        
-        // Use this to make fullscreen
-        //fullScreen();
-
-        // Use this to make fullscreen and use P3D for 3D graphics
         fullScreen(P3D, SPAN); 
         smooth();
     }
@@ -42,6 +34,8 @@ public class MyVisual extends Visual
 
         dima = new Dima(this);
         norbert = new Norbert(this);
+        dima = new Dima(this);
+        shawn = new Shawn(this);
     }
 
     public void keyPressed()
@@ -81,6 +75,10 @@ public class MyVisual extends Visual
         }
         if(position > 29.99f && position < 40){    
             dima.Visual(0); 
+        }
+        if(position > 39.99f && position < 60){
+            colorMode(RGB);
+            shawn.visual();
         }
     }
 }
