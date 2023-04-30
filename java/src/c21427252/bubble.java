@@ -9,7 +9,7 @@ public class bubble
     private PVector pos;
     private PApplet p;
     private int lives = 10;
-    float bounce = 0.75f;
+    //float bounce = 0.75f;
     
     public bubble(PVector pos, PApplet p)
     {
@@ -35,28 +35,30 @@ public class bubble
     {
         
         //p.circle(pos.x += DirX, pos.y += DirY, 11);
+        // This set of If statements prevents the balls from leaving the screen border 
+        // Change DIRX *= 1.15 1.05 1.5 1.25 these all either slow it down or speed it up 
         
         if(pos.x > p.width)
         {
-            DirX *= -1.05;
+            DirX *= -1.1;
             lives--; 
         }
         
         if(pos.x < 0) 
         {
-            DirX *= -1.05;
+            DirX *= -1.1;
             lives--;
         }
 
         if(pos.y > p.height)
         {
-            DirY *= -1.05;
+            DirY *= -1.1;
             lives--;
         }
         
         if(pos.y < 0) 
         {
-            DirY *= -1.05;
+            DirY *= -1.1;
             lives--;
         }
         //c = 
@@ -67,7 +69,7 @@ public class bubble
         
         if (lives > 0)
         {
-            explosion();
+            Tail();
             
         }
         lives = 10;
@@ -77,7 +79,8 @@ public class bubble
     }
 
 
-    public void explosion() 
+    // grows the tail of the circles after the bounce enough times
+    public void Tail() 
     {
         //if a bubbles life = > 3 leave an explosion at current location
         p.rect(pos.x, pos.y, DirX, DirY);

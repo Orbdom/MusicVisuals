@@ -1,38 +1,22 @@
 package c21427252;
 
+// import hireracy 
 import processing.core.PApplet;
 import processing.core.PVector;
 
-// Music Stuff
-import ddf.minim.AudioBuffer;
-import ddf.minim.AudioInput;
-import ddf.minim.AudioPlayer;
-import ddf.minim.Minim;
-
-
 public class bubbles 
 {
+    //creates an array
     bubble bob[];
-    private float width;
-    private float height;
     private PApplet p;
-    private int size = 1000;
-    //private int lives = 3;
     private PVector pos;
 
-    //
-    Minim minim;
-    AudioPlayer ap;
-    AudioInput ai;
-    AudioBuffer ab;
-
-    int mode = 0;
-
-    float y = 0;
-    float smoothedY = 0;
-    float smoothedAmplitude = 0;
+    private float width;
+    private float height;
     
-   
+    // This decides how many balls will spawn 
+    private int size = 1000;
+    
     public bubbles(float width, float height, PApplet p)
     {
         //this exact classes width = 
@@ -43,6 +27,8 @@ public class bubbles
 
         // Initalsing bubble array
         bob = new bubble[size];
+        
+        // This for loop deides on which side of the screen the bubble will spawn by dividing the array size by modulos of 4 
         for(int i = 0; i < size; i++)
         {
             float x = 0, y = 0; 
@@ -55,7 +41,7 @@ public class bubbles
                     break;
                 case 1:
                 //right
-                    x = p.random(width,0);
+                    x = p.random(0,width);
                     y = p.random(0, height);
 
                     break;
@@ -83,6 +69,7 @@ public class bubbles
         }
     }
 
+    // creates the bubbles and stuff
     public void render()
     {
         for (int i = 0; i < size; i++)

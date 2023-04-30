@@ -90,6 +90,8 @@ public class MyVisual extends Visual
             dima.Visual(2);
         }
          */
+
+        // Ment to 
         float r;
         r = random(20, 50);
         fill(0,0,0,r);

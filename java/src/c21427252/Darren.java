@@ -16,6 +16,7 @@ public class Darren
         wave = new crossWave(myVisual);
     }
 
+    // Calls the indivual classes renders to create  the overall Visuals
     public void render()
     {
         b.render();
