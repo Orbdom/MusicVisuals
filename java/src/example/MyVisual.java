@@ -4,6 +4,7 @@ import ie.tudublin.*;
 import c21376161.*;
 import c21344786.*;
 import c21518659.*;
+import c21427252.*;
 
 public class MyVisual extends Visual
 {
@@ -11,6 +12,7 @@ public class MyVisual extends Visual
     Dima dima;
     Norbert norbert;
     Shawn shawn;
+    Darren darren;
     int i = 0;
 
     public void settings()
@@ -36,6 +38,7 @@ public class MyVisual extends Visual
         norbert = new Norbert(this);
         dima = new Dima(this);
         shawn = new Shawn(this);
+        darren = new Darren(this);
     }
 
     public void keyPressed()
@@ -66,19 +69,28 @@ public class MyVisual extends Visual
 
         position = map(getAudioPlayer().position(), 0, getAudioPlayer().length(), 0, 100);
         
-        if(position < 20){
+        if(position <= 20){
             background(0);
             norbert.visual();   
         }
-        if(position > 19.99f && position < 30){
+        if(position >= 20 && position <= 30){
             dima.Visual(2);
         }
-        if(position > 29.99f && position < 40){    
+        if(position >= 30 && position <= 40){    
             dima.Visual(0); 
         }
-        if(position > 39.99f && position < 60){
+        if(position >= 40 && position <= 60){
             colorMode(RGB);
             shawn.visual();
         }
+        if(position >= 60 && position <= 80){
+            float r;
+            r = random(20, 50);
+            fill(0,0,0,r);
+            rect(0, 0, width, height);
+            darren.render();
+        }
+
+        
     }
 }
