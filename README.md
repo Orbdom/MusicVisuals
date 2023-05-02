@@ -17,7 +17,7 @@ Make a music visualizer, i have a music visualizer that displays squares with a 
 
 # Instructions
 
-just press play
+just press play (spacebar)
 
 # How it works
 
