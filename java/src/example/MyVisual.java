@@ -2,6 +2,7 @@ package example;
 
 import ie.tudublin.*;
 import c21376161.*;
+import c21321073.DM_Project2;
 import c21344786.*;
 import c21518659.*;
 import c21427252.*;
@@ -13,7 +14,7 @@ public class MyVisual extends Visual
     Norbert norbert;
     Shawn shawn;
     Darren darren;
-    int i = 0;
+    DM_Project2 domas;
 
     public void settings()
     {
@@ -39,6 +40,7 @@ public class MyVisual extends Visual
         dima = new Dima(this);
         shawn = new Shawn(this);
         darren = new Darren(this);
+        domas = new DM_Project2(this);
     }
 
     public void keyPressed()
@@ -69,6 +71,8 @@ public class MyVisual extends Visual
 
         position = map(getAudioPlayer().position(), 0, getAudioPlayer().length(), 0, 100);
         
+        background(0);
+
         if(position <= 20){
             background(0);
             norbert.visual();   
@@ -89,6 +93,9 @@ public class MyVisual extends Visual
             fill(0,0,0,r);
             rect(0, 0, width, height);
             darren.render();
+        }
+        if(position >= 80 && position <= 100){
+            domas.visual();
         }
 
         

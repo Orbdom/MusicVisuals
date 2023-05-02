@@ -65,7 +65,6 @@ public class Dima {
     public void Visual(int VisIndex){
 
         mv.lights();
-        mv.background(0);
 
         switch(VisIndex){
             case 0:{
