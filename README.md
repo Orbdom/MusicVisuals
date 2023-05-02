@@ -25,7 +25,7 @@ It draws squares and stacks them into columns by calculated current position and
 
 # What I am most proud of in the assignment
 
-Getting the columns to stack correctly.
+Getting the columns to stack correctly. I also was pretty proud of my having images that have a tinted colour based on height of column however while it worked in the OOP-2023 folder I had. I couldnt get it to work for the MusicVisuals folder.
 
 # Markdown Tutorial
 
