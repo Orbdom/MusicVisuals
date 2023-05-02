@@ -4,66 +4,113 @@ import processing.core.PApplet;
 import processing.core.PShape;
 
 public class Boat extends Bobber {
-    public PShape Hull, Mast;
-    float drop = 0;
+    private PShape Parent, BoatShape, Sail, Mast;
+    private float drop = 0;
 
-    public Boat(Wave wave, float pos, float length, float drop){
-        super(wave, pos, length);
+    public Boat(Wave wave, float posX, float length, float drop){
+        super(wave, posX, length);
         this.drop = drop;
 
-        Hull = p.createShape(PShape.GEOMETRY);
-        Hull.beginShape();
-        Hull.stroke(0,0,255);
-        Hull.vertex(-50,-10);
-        Hull.vertex(-48,-20);
-        Hull.vertex(-20, -20);
-        Hull.vertex(-20, -10);
-        Hull.vertex(15, -10);
-        Hull.vertex(30, -20);
-        Hull.vertex(55, -20);
+        Parent = p.createShape(PShape.GROUP);
+        //Parent.beginShape();
+        //Parent.endShape();
 
-        Hull.vertex(69, -23);
-        Hull.vertex(70, -22);
+        BoatShape = p.createShape(PShape.GEOMETRY);
+        BoatShape.beginShape();
+        BoatShape.stroke(0,0,255);
+        BoatShape.vertex(-50,-10);
+        BoatShape.vertex(-48,-20);
+        BoatShape.vertex(-20, -20);
+        BoatShape.vertex(-20, -10);
+        BoatShape.vertex(15, -10);
+        BoatShape.vertex(30, -20);
+        BoatShape.vertex(55, -20);
 
-        Hull.vertex(55, -15);
-        Hull.bezierVertex( 40,20, -20,10, -45, 7);
+        BoatShape.vertex(69, -23);
+        BoatShape.vertex(70, -22);
 
-        //p.line(-50, -10, 50,-10);
-        //p.line(-50, -10, -45,7);
-        //p.bezier(-45, 7, -20,10, 50,20, 50,-10);
-        Hull.endShape(PApplet.CLOSE);
-        Hull.setFill(true);
-        Hull.setFill(wave.mv.color(0,0,0));
+        BoatShape.vertex(55, -15);
+        BoatShape.bezierVertex( 40,20, -20,10, -45, 7);
 
+        BoatShape.endShape(PApplet.CLOSE);
+        BoatShape.setFill(true);
+        BoatShape.setFill(wave.mv.color(0,0,0));
+
+        //Sail
+        Sail = p.createShape(PShape.GEOMETRY);
+        Sail.beginShape();
+        Sail.stroke(0,0,255);
+
+        Sail.vertex(-10,-80);
+        Sail.bezierVertex(20,-70, 20,-25,-10,-15);
+
+        Sail.endShape();
+        Sail.setFill(true);
+        Sail.setFill(wave.mv.color(0,0,0));
+
+        //Mast rect(-1.5f,-10,3,-70);
+
+        Mast = p.createShape(PShape.GEOMETRY);
+        Mast.beginShape();
+        Mast.stroke(0,0,255);
+
+        Mast.vertex(-5f,-10);
+        Mast.vertex(-1.5f,-10);
+        Mast.vertex(-1.5f,-80);
+        Mast.vertex(-5f,-80);
         
+        Mast.endShape(PShape.CLOSE);
+        Mast.setFill(true);
+        Mast.setFill(wave.mv.color(0,0,0));
+
+        Parent.addChild(BoatShape);
+        Parent.addChild(Sail);
+        Parent.addChild(Mast);
+
     }
 
-    public Boat(Wave wave, float pos, float length, float drop, PShape Hull){
-        super(wave, pos, length);
+    public Boat(Wave wave, float posX, float length, float drop, PShape Parent){
+        super(wave, posX, length);
         this.drop = drop;
-        this.Hull = Hull;
+        this.Parent = Parent;
+    }
+
+    public void setFill(boolean Fill){
+        Parent.setFill(Fill);
+    }
+
+    public void setFill(int R, int G, int B){
+        Parent.setFill(p.color(R, G, B));
+    }
+
+    public void setFill(int R, int G, int B, int A){
+        Parent.setFill(p.color(R, G, B, A));
+    }
+
+    public void setStroke(boolean Stroke){
+        Parent.setStroke(Stroke);
+    }
+
+    public void setStroke(int R, int G, int B){
+        Parent.setStroke(p.color(R, G, B));
+    }
+
+    public void setStroke(int R, int G, int B, int A){
+        Parent.setFill(p.color(R, G, B, A));
     }
 
     public void Render(float AngleRate, float HeightRate,float scale){
         GetAngle(AngleRate, HeightRate);
-        p.translate(pos + length/2, LerpedMidHeight + drop);
+        p.pushMatrix();
+        p.translate(posX + length/2, LerpedMidHeight + drop);
         p.rotate(LerpedAngle);
         p.scale(scale);
 
-        //drawing
-        p.stroke(0,0,255);
-        p.strokeWeight(1);
-        p.noFill();
+        p.shape(Parent);
+        p.popMatrix();
+    }
 
-        //sail and mast
-        p.rect(-1.5f,-10,3,-70);
-        p.bezier(-10,-80,20,-70, 20,-25,-10,-15);
-        //hull
-        p.shape(Hull);
-
-        p.scale(1/scale);
-        //drawing
-        p.rotate(-LerpedAngle);
-        p.translate(-(pos + length/2), -LerpedMidHeight - drop);
+    public PShape GetPShape(){
+        return Parent;
     }
 }

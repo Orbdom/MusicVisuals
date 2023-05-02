@@ -2,25 +2,22 @@ package example;
 
 import ie.tudublin.*;
 import c21376161.*;
+import c21321073.DM_Project2;
 import c21344786.*;
+import c21518659.*;
+import c21427252.*;
 
 public class MyVisual extends Visual
-{    
-    WaveForm wf;
-    AudioBandsVisual abv;
-
+{
     float position;
     Dima dima;
-    int i = 0;
+    Norbert norbert;
+    Shawn shawn;
+    Darren darren;
+    DM_Project2 domas;
 
     public void settings()
     {
-        //size(1024, 500,P3D);
-        
-        // Use this to make fullscreen
-        //fullScreen();
-
-        // Use this to make fullscreen and use P3D for 3D graphics
         fullScreen(P3D, SPAN); 
         smooth();
     }
@@ -32,16 +29,18 @@ public class MyVisual extends Visual
         startMinim();
                 
         // Call loadAudio to load an audio file to process 
-        loadAudio("Moby Duck.mp3");   
+        loadAudio("MobyDuck.wav");   
 
         
         // Call this instead to read audio from the microphone
         //startListening(); 
-        
-        wf = new WaveForm(this);
-        abv = new AudioBandsVisual(this);
 
         dima = new Dima(this);
+        norbert = new Norbert(this);
+        dima = new Dima(this);
+        shawn = new Shawn(this);
+        darren = new Darren(this);
+        domas = new DM_Project2(this);
     }
 
     public void keyPressed()
@@ -55,7 +54,6 @@ public class MyVisual extends Visual
 
     public void draw()
     {
-        background(0, 30);
         try
         {
             // Call this if you want to use FFT data
@@ -70,22 +68,36 @@ public class MyVisual extends Visual
         //
         //// Call this is you want to get the average amplitude
         calculateAverageAmplitude();        
-        //wf.render();
-        //abv.render();
-        fill(0,255,255,255);
-        rect(i + 10,10,10,10);
+
         position = map(getAudioPlayer().position(), 0, getAudioPlayer().length(), 0, 100);
-        if(position < 10){
-            dima.Visual(0);
+        
+        background(0);
+
+        if(position <= 20){
+            background(0);
+            norbert.visual();   
         }
-        else if(position < 20){
-            dima.Visual(1);
-        }
-        else{
+        if(position >= 20 && position <= 30){
             dima.Visual(2);
         }
+        if(position >= 30 && position <= 40){    
+            dima.Visual(0); 
+        }
+        if(position >= 40 && position <= 60){
+            colorMode(RGB);
+            shawn.visual();
+        }
+        if(position >= 60 && position <= 80){
+            float r;
+            r = random(20, 50);
+            fill(0,0,0,r);
+            rect(0, 0, width, height);
+            darren.render();
+        }
+        if(position >= 80 && position <= 100){
+            domas.visual();
+        }
 
-        i+= 20;
-        i%=width;
+        
     }
 }

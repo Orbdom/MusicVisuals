@@ -3,7 +3,6 @@ package c21376161;
 import example.MyVisual;
 import processing.core.PApplet;
 import processing.core.PShape;
-import processing.core.PVector;
 
 public class DuckCircle extends SuperDuck{
     PShape Ducks[];

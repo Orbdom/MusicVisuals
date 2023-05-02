@@ -3,40 +3,42 @@ package c21376161;
 import processing.core.PApplet;
 
 public class Bobber {
-    Wave wave;
-    float Angle = 0;
-    float LerpedAngle = 0;
-    float LowHeight, MidHeight, HighHeight;
-    float LerpedLowHeight = 0, LerpedMidHeight = 0, LerpedHighHeight = 0;
-    float pos;
-    float length;
+    private Wave wave;
+    private float Angle = 0;
+    protected float LerpedAngle = 0;
+    private float LowHeight, MidHeight, HighHeight;
+    private float LerpedLowHeight = 0;
+    protected float LerpedMidHeight = 0;
+    private float LerpedHighHeight = 0;
+    protected float posX;
+    protected float length;
 
     public boolean Debug = false;
 
     PApplet p;
 
-    public Bobber(Wave wave, float pos, float length){
+    public Bobber(Wave wave, float posX, float length){
         this.wave = wave;
-        this.pos = pos;
+        this.posX = posX;
         this.length = length;
         this.p = wave.mv;
     }
 
     public void GetAngle(float AngleRate, float HeightRate){
-        Angle = (float)PApplet.atan((wave.GrabWavePoint(pos + length) - wave.GrabWavePoint(pos))/(length));
+        Angle = (float)PApplet.atan((wave.GrabWavePoint(posX + length) - wave.GrabWavePoint(posX))/(length));
         LerpedAngle = PApplet.lerp(LerpedAngle, Angle, AngleRate);
-        MidHeight = (wave.GrabWavePoint(pos + length)+wave.GrabWavePoint(pos))/2;
+        MidHeight = (wave.GrabWavePoint(posX + length)+wave.GrabWavePoint(posX))/2;
 
 
         LerpedMidHeight = PApplet.lerp(LerpedMidHeight, MidHeight, HeightRate);
 
-        if(wave.GrabWavePoint(pos + length) > wave.GrabWavePoint(pos)){
-            HighHeight = wave.GrabWavePoint(pos + length);
-            LowHeight = wave.GrabWavePoint(pos);
+        if(wave.GrabWavePoint(posX + length) > wave.GrabWavePoint(posX)){
+            HighHeight = wave.GrabWavePoint(posX + length);
+            LowHeight = wave.GrabWavePoint(posX);
         }
         else{
-            HighHeight = wave.GrabWavePoint(pos);
-            LowHeight = wave.GrabWavePoint(pos + length);
+            HighHeight = wave.GrabWavePoint(posX);
+            LowHeight = wave.GrabWavePoint(posX + length);
         }
 
         LerpedHighHeight = PApplet.lerp(LerpedHighHeight, HighHeight, HeightRate);
@@ -51,7 +53,7 @@ public class Bobber {
 
         p.stroke(0,0,255);
         p.strokeWeight(1);
-        p.translate(pos + length/2, wave.WaveHeight + 100);
+        p.translate(posX + length/2, wave.WaveHeight + 100);
 
         p.line(-length/2, -20, -length/2, 20);
 
@@ -65,9 +67,13 @@ public class Bobber {
         p.line(0.9f*(-length/2), -0, 0.9f*(length/2), 0);
         p.rotate(-LerpedAngle);
         
-        p.translate(-pos - length/2, -wave.WaveHeight - 100);
+        p.translate(-posX - length/2, -wave.WaveHeight - 100);
 
         p.stroke(preCol);
         p.strokeWeight(preWeight);
+    }
+
+    public void ChangeX(float posX){
+        this.posX += posX;
     }
 }

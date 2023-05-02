@@ -60,9 +60,17 @@ public class Wave{
         WaveOffset %= WaveWidth;
     }
 
-    void JoinWaveVerts(Wave w1, Wave w2){
-        for(int i =0; i < w1.AmtPoints; i++){
-            mv.line(i,w1.GrabWavePoint(i) * WaveWidth/AmtPoints, i, w1.GrabWavePoint(i) + 10);
+    void JoinWaveVerts(Wave w1){
+        if(w1 == null){
+            return;
+        }
+        for(int i = 0; i < w1.AmtPoints; i++){
+
+            float p1 = ((float)(i)/AmtPoints)*WaveWidth;
+            float p2 = (i < w1.AmtPoints)?(((float)(i+1)/AmtPoints)*WaveWidth):(p1);
+
+            mv.line(p1, GrabWavePoint(p1), p1, w1.GrabWavePoint(p1));
+            mv.line(p1, GrabWavePoint(p1)+2, p2, w1.GrabWavePoint(p2)-2);
         }
     }
 
@@ -75,8 +83,7 @@ public class Wave{
     float BufferAvg(){
         float Avg;
         Avg = 0;
-        for(int i = 0 ; i < mv.getBands().length ; i ++)
-        {
+        for(int i = 0 ; i < mv.getBands().length ; i ++){
             Avg += mv.getSmoothedBands()[i];
         }
 
