@@ -13,7 +13,7 @@ Student Number: C21321073
 
 # Description of the assignment
 
-Make a music visualizer, i have a music visualizer that displays squares with a picture of a duck as my song is duck themed.
+Make a music visualizer, i have a music visualizer that displays stacked squares into columns of which the height is based on the song. Looks similar to the old school car radios.
 
 # Instructions
 
